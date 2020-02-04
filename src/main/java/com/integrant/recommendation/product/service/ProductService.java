@@ -11,15 +11,24 @@ import com.integrant.recommendation.product.dto.ProductCatalogDto;
 import com.integrant.recommendation.product.model.ProductCatalog;
 import com.integrant.recommendation.product.repository.ProductCatalogRepository;
 
+/**
+ * The Class ProductService.
+ */
 @Service
 public class ProductService {
 	
+	/** The product catalog repository. */
 	@Autowired
 	private ProductCatalogRepository productCatalogRepository;
 	
     /** The logger. */
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	/**
+	 * Save product catalog.
+	 *
+	 * @param productCatalogDto the product catalog dto
+	 */
 	public void saveProductCatalog(ProductCatalogDto productCatalogDto) {
 		
 		ProductCatalog productCatalog = new ProductCatalog().buildProductCatalog(productCatalogDto);
@@ -27,10 +36,21 @@ public class ProductService {
 		productCatalogRepository.save(productCatalog);
 	}
 	
+	/**
+	 * Find all product catalogs.
+	 *
+	 * @return the list
+	 */
 	public List<ProductCatalog> findAllProductCatalogs() {
 		return productCatalogRepository.findAll();
 	}
 	
+	/**
+	 * Find product catalogs.
+	 *
+	 * @param productCatalogId the product catalog id
+	 * @return the product catalog
+	 */
 	public ProductCatalog findProductCatalogs(String productCatalogId) {
 		return productCatalogRepository.findById(productCatalogId).orElse(null);
 	}

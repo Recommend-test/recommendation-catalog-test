@@ -18,17 +18,26 @@ import com.integrant.recommendation.product.dto.ProductCatalogDto;
 import com.integrant.recommendation.product.model.ProductCatalog;
 import com.integrant.recommendation.product.service.ProductService;
 
+/**
+ * The Class ProductCatalogController.
+ */
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1")
 public class ProductCatalogController {
 	
+	/** The product service. */
 	@Autowired
 	private ProductService productService;
 	
     /** The logger. */
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	/**
+	 * Save new catalog.
+	 *
+	 * @param productCatalogDto the product catalog dto
+	 */
 	@PostMapping("/products")
 	public void saveNewCatalog(@Validated @RequestBody ProductCatalogDto productCatalogDto) {
 		
@@ -36,12 +45,23 @@ public class ProductCatalogController {
 		
 	}
 	
+	/**
+	 * Gets the all catalogs.
+	 *
+	 * @return the all catalogs
+	 */
 	@GetMapping("/products")
 	public List<ProductCatalog> getAllCatalogs() {
 		
 		return productService.findAllProductCatalogs();
 	}
 	
+	/**
+	 * Gets the all catalogs.
+	 *
+	 * @param id the id
+	 * @return the all catalogs
+	 */
 	@GetMapping("/products/{id}")
 	public ProductCatalog getAllCatalogs(@Validated @PathVariable String id) {
 		
