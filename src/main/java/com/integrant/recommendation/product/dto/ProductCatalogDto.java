@@ -3,20 +3,29 @@ package com.integrant.recommendation.product.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.integrant.recommendation.product.model.Product;
 
 /**
  * The Class ProductCatalogDto.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductCatalogDto implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The catalog name. */
+	@NotNull(message = "Catalog Name must not be null")
+	@NotEmpty(message = "Catalog Name must not be null")
 	private String catalogName;
 	
 	/** The category name. */
+	@NotNull(message = "Category Name must not be null")
+	@NotEmpty(message = "Category Name must not be null")
 	private String categoryName;
 	
 	/** The products. */

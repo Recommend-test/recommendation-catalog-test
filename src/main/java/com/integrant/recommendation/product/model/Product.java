@@ -3,11 +3,17 @@ package com.integrant.recommendation.product.model;
 import java.io.Serializable;
 import java.util.UUID;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.mongodb.core.mapping.Field;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * The Class Product.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Product implements Serializable {
 	
 	/** The Constant serialVersionUID. */
@@ -18,6 +24,8 @@ public class Product implements Serializable {
 	private String id;
 	
 	/** The product name. */
+	@NotNull
+	@NotEmpty
 	@Field("product_name")
 	private String productName;
 	
@@ -27,7 +35,7 @@ public class Product implements Serializable {
 	
 	/** The product stock. */
 	@Field("stock")
-	private String productStock;
+	private Integer productStock;
 	
 	/** The product specs. */
 	@Field("specification")
@@ -41,9 +49,9 @@ public class Product implements Serializable {
 	 * @param productStock the product stock
 	 * @param productSpecs the product specs
 	 */
-	public Product(String productName, String productDescription, String productStock,
+	public Product(String productName, String productDescription, Integer productStock,
 			ProductSpecs productSpecs) {
-		this.id = UUID.randomUUID().toString();;
+		this.id = UUID.randomUUID().toString();
 		this.productName = productName;
 		this.productDescription = productDescription;
 		this.productStock = productStock;
@@ -82,7 +90,7 @@ public class Product implements Serializable {
 	 *
 	 * @return the product stock
 	 */
-	public String getProductStock() {
+	public Integer getProductStock() {
 		return productStock;
 	}
 
